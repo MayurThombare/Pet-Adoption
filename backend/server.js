@@ -9,11 +9,37 @@ const { errorHandler, notFound } = require('./middleware/errorHandler');
 
 const app = express();
 
-// Middleware
+// CORS — allow all origins in production (fixes Vercel deployment)
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: (origin, callback) => {
+    // Allow requests with no origin (Postman, curl, mobile)
+    if (!origin) return callback(null, true);
+
+    // Allow localhost for development
+    if (origin.includes('localhost')) return callback(null, true);
+
+    // Allow ALL Vercel deployments (preview + production)
+    if (origin.endsWith('.vercel.app')) return callback(null, true);
+
+    // Allow Render deployments
+    if (origin.endsWith('.onrender.com')) return callback(null, true);
+
+    // Allow custom domain from FRONTEND_URL env
+    const frontendUrl = process.env.FRONTEND_URL;
+    if (frontendUrl && origin === frontendUrl) return callback(null, true);
+
+    // In production, log blocked origins for debugging
+    console.log(`CORS blocked origin: ${origin}`);
+    callback(new Error(`CORS blocked: ${origin}`));
+  },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+// Handle preflight OPTIONS requests
+app.options('*', cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -37,7 +63,7 @@ app.get('/api/health', (req, res) => {
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
 const startServer = async () => {
   try {

@@ -1,5 +1,7 @@
 const { Sequelize } = require('sequelize');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
@@ -17,12 +19,14 @@ const sequelize = new Sequelize(
       idle: 10000,
     },
 
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
+    dialectOptions: isProduction
+      ? {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false,
+          },
+        }
+      : {}, // 👈 NO SSL locally
   }
 );
 
