@@ -37,7 +37,7 @@ A full-stack MERN-style application (React + Node.js + Express + PostgreSQL) for
 |-------|-----------|
 | Frontend | React 18, React Router v6, Axios |
 | Backend | Node.js, Express 4 |
-| Database | PostgreSQL + Sequelize ORM |
+| Database | PostgreSQL |
 | Auth | JWT (jsonwebtoken) + bcryptjs |
 | Validation | express-validator |
 | File Upload | Multer |
