@@ -1,0 +1,101 @@
+.auth-page {
+  min-height: calc(100vh - 68px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background: radial-gradient(ellipse at 20% 80%, rgba(74,124,89,0.12) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 20%, rgba(232,146,58,0.12) 0%, transparent 50%);
+}
+
+.auth-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-card-wide { max-width: 560px; }
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-logo {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.auth-title {
+  font-size: 2rem;
+  color: var(--bark);
+  margin-bottom: 6px;
+}
+
+.auth-sub {
+  color: var(--bark-muted);
+  font-size: 0.95rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.btn-full { width: 100%; justify-content: center; }
+
+.auth-demo {
+  background: var(--cream);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.demo-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--bark-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.demo-accounts {
+  display: flex;
+  gap: 10px;
+}
+
+.demo-btn {
+  flex: 1;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid rgba(61,43,31,0.15);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--bark);
+  transition: all 0.2s;
+}
+
+.demo-btn:hover {
+  border-color: var(--bark);
+  background: var(--cream);
+}
+
+.auth-link {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--bark-muted);
+}
+
+.auth-link a {
+  color: var(--bark);
+  font-weight: 600;
+  text-decoration: underline;
+}

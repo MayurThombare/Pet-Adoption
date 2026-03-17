@@ -1,0 +1,9 @@
+.pets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 600px) {
+  .pets-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+}
